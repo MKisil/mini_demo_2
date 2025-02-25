@@ -2,13 +2,14 @@ from django.core.files.storage import default_storage
 from django.shortcuts import render
 import markdown
 from django.utils.safestring import mark_safe
+from django.views.decorators.csrf import csrf_exempt
 from google import genai
 
 from config import settings
 from demo.forms import CallsUploadForm
 from demo.models import CallsAnalysis
 
-
+@csrf_exempt
 def calls_analyze_view(request):
     if request.method == "POST":
         form = CallsUploadForm(request.POST, request.FILES)
