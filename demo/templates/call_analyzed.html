@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load demo_filters %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calls Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+<div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-3xl m-8">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Аналіз дзвінка</h2>
+    <div class="space-y-4">
+        {% if obj %}
+        <div class="bg-gray-50 p-4 rounded-lg shadow-md border border-gray-200">
+            <h3 class="text-lg font-semibold text-gray-900">Файл: {{ obj.audio_file|basename }}</h3>
+            <p class="text-sm text-blue-600"><a href="{{ obj.audio_file.url }}" target="_blank" class="hover:underline">Посилання
+                на аудіо</a></p>
+            <p class="mt-2 text-gray-700"><strong>Відповідь gemini(2.0-flash):</strong></p>
+            <div class="mt-2 text-gray-700 overflow-x-auto">
+                <pre class="whitespace-pre-wrap">{{ response_text }}</pre>
+            </div>
+        </div>
+        {% else %}
+        <p class="text-gray-600">Немає аналізів розмов.</p>
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>
