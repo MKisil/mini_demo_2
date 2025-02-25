@@ -32,7 +32,7 @@ def calls_analyze_view(request):
             response_text = response.text
 
             call_analysis = CallsAnalysis.objects.create(
-                audio_file=file_path,
+                audio_file=file_name,
                 analysis_result=response_text
             )
 
